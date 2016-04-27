@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,7 +24,7 @@ public class Board {
     private final JPanel gui = new JPanel(new BorderLayout(3, 3));
     private JButton[][] boardSquares = new JButton[8][8];
     private JPanel board;
-    private static final String COLS = "         ";
+    private static final String COLS = "12345678";
 
     Board() {
         initializeGui();
@@ -42,12 +44,32 @@ public class Board {
         JToolBar tools = new JToolBar();
         tools.setFloatable(false);
         gui.add(tools, BorderLayout.PAGE_START);
-        tools.add(new JButton("New Game"));
+        /*tools.add(new JButton("New Game"));
         tools.add(new JButton("Credits")); 
         tools.add(new JButton("Help")); 
         tools.add(new JButton("Quit")); 
-        
+*/        
 
+        JButton button = new JButton("New Game");
+        tools.add(button);
+        
+        JButton button2 = new JButton("Credits");
+        tools.add(button2);
+        
+        JButton button3 = new JButton("Quit");
+        tools.add(button3);
+        
+        button3.addActionListener(
+        		new ActionListener() {
+        			public void actionPerformed(ActionEvent e) {
+        				System.exit(0);
+        			}
+        		}
+        		);
+        
+        
+        
+        
         board = new JPanel(new GridLayout(0, 9));	
         gui.add(board);
 
@@ -63,13 +85,13 @@ public class Board {
                
                if ((j % 2 == 1 && i % 2 == 1) || (j % 2 == 0 && i % 2 == 0)) 
                 {
-                	ImageIcon bIcon = new ImageIcon( "/OTHELLO GAME/OTHELLO PEICES/Othello Chip White.png" );
+                	ImageIcon bIcon = new ImageIcon( "G:/Othello/Othello/images/Othello Chip Black.png" );
                     b.setIcon(bIcon);
                     boardSquares[j][i] = b;
                 } 
                 else 
                 {
-                	ImageIcon bIcon = new ImageIcon("/OTHELLO GAME/OTHELLO PEICES/Othello Chip Black.png");
+                	ImageIcon bIcon = new ImageIcon( "G:/Othello/Othello/images/Othello Chip White.png" );
                     b.setIcon(bIcon);
                     boardSquares[j][i] = b;
                 }
