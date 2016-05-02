@@ -6,16 +6,17 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+
 /*
  * Class board creates and adds and 8 by 8 board to the gui
  */
@@ -33,43 +34,49 @@ public class Board {
     /*
      * method initializeGui will print out the 
      * graphic user interface with a board that is 8 by 8
+     * and buttons 
      *
      *@param: none
      *@return: none
      * 
      */
-
-    public final void initializeGui() {
-        // Buttons on the top left
+    public final void initializeGui() 
+    {
+        // Buttons 
         JToolBar tools = new JToolBar();
         tools.setFloatable(false);
         gui.add(tools, BorderLayout.PAGE_START);
-        /*tools.add(new JButton("New Game"));
-        tools.add(new JButton("Credits")); 
-        tools.add(new JButton("Help")); 
-        tools.add(new JButton("Quit")); 
-*/        
 
-        JButton button = new JButton("New Game");
-        tools.add(button);
+        JButton newBut = new JButton("New Game");
+        tools.add(newBut);
         
-        JButton button2 = new JButton("Credits");
-        tools.add(button2);
+        JButton creditsBut = new JButton("Credits");
+        tools.add(creditsBut);
         
-        JButton button3 = new JButton("Quit");
-        tools.add(button3);
+        JButton quitBut = new JButton("Quit");
+        tools.add(quitBut);
         
-        button3.addActionListener(
-        		new ActionListener() {
-        			public void actionPerformed(ActionEvent e) {
+        
+        // Add an ActionListener to the credits button which displays credits
+        creditsBut.addActionListener(new ActionListener() 
+        		{
+        			public void actionPerformed(ActionEvent e) 
+        			{
+        				JOptionPane.showMessageDialog(gui,
+        						"Created By: \nMarqus Pino\nKory Borromeo-Macadangdang\nEdwin Reyes\n\nMusic By:\nMarqus Pino"
+        						+ "\n\nThis project was created for a Computer Science III H Final Project.");
+        			}
+        		} );
+        
+        // Makes the quit button quit
+        quitBut.addActionListener(new ActionListener() 
+        		{ 	 
+        			public void actionPerformed(ActionEvent e) 
+        			{
         				System.exit(0);
         			}
-        		}
-        		);
-        
-        
-        
-        
+        		} );
+
         board = new JPanel(new GridLayout(0, 9));	
         gui.add(board);
 
@@ -81,29 +88,27 @@ public class Board {
             {
                 JButton b = new JButton();
                 b.setMargin(buttonMargin);
+                
                 // goes through boardSquares and make every other square a 
-               
                if ((j % 2 == 1 && i % 2 == 1) || (j % 2 == 0 && i % 2 == 0)) 
                 {
-                	ImageIcon bIcon = new ImageIcon( "G:/Othello/Othello/images/Othello Chip Black.png" );
-                    b.setIcon(bIcon);
+                	ImageIcon icon = new ImageIcon( "E:/Othello/Othello/images/Othello Chip Black.png" );
+                    b.setIcon(icon);
                     boardSquares[j][i] = b;
                 } 
                 else 
                 {
-                	ImageIcon bIcon = new ImageIcon( "G:/Othello/Othello/images/Othello Chip White.png" );
-                    b.setIcon(bIcon);
+                	ImageIcon icon = new ImageIcon( "E:/Othello/Othello/images/Othello Chip White.png" );
+                    b.setIcon(icon);
                     boardSquares[j][i] = b;
-                }
-                
-            
+                }            
  
-                // this goes through each button square and goes inbetween each other to make a white square or gray square
+                // this goes through each button square and goes in between each other to make a white square or gray square
                 if ((j % 2 == 1 && i % 2 == 1) || (j % 2 == 0 && i % 2 == 0)) 
                 {
-                    b.setBackground(Color.darkGray);
+                    b.setBackground(Color.white);
                 } else {
-                    b.setBackground(Color.gray);
+                    b.setBackground(Color.darkGray);
                 }
                 boardSquares[j][i] = b;
             }
@@ -135,26 +140,30 @@ public class Board {
             }
         }
     }
+    
     /*
-     * getter getBoard gets the 8 by 8 board 
+     * gets getBoard gets the 8 by 8 board 
+     * @param: none
+     * @return: board
      */
-
     public final JComponent getboard() 
     {
         return board;
     }
+    
     /*
-     * getter getGui gets the gui
+     * gets getGui gets the gui
+     * @param: none
+     * @return: gui
      */
-
     public final JComponent getGui() 
     {
         return gui;
     }
+    
     /*
      * Method main will run the program 
      */
-
     public static void main(String[] args)
     {
         Runnable r = new Runnable() 
@@ -163,10 +172,12 @@ public class Board {
             @Override
             public void run() 
             {
+            	
                 Board cb =
                         new Board();
 
                 JFrame f = new JFrame("Othello");
+                f.setResizable(false);
                 f.add(cb.getGui());
                 f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 f.setLocationByPlatform(true);
@@ -182,3 +193,30 @@ public class Board {
         SwingUtilities.invokeLater(r);
     }
 }
+
+
+
+
+/*   public void playSound() {
+try {
+    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("E:/Othello/Othello Song.mp3").getAbsoluteFile());
+    Clip clip = AudioSystem.getClip();
+    clip.open(audioInputStream);
+    clip.start();
+} catch(Exception ex) {
+    System.out.println("Error with playing sound.");
+    ex.printStackTrace();
+}
+
+try{
+    AudioInputStream audioInputStream =
+        AudioSystem.getAudioInputStream(
+            this.getClass().getResource("E:/Othello/Othello Song.mp3"));
+    Clip clip = AudioSystem.getClip();
+    clip.open(audioInputStream);
+    clip.start();
+}
+catch(Exception ex)
+{
+}
+}*/
