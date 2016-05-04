@@ -51,40 +51,57 @@ public class Board {
         JButton newBut = new JButton("New Game");
         tools.add(newBut);
         
+        JButton helpBut = new JButton("Help");
+        tools.add(helpBut);
+        
         JButton creditsBut = new JButton("Credits");
         tools.add(creditsBut);
         
         JButton quitBut = new JButton("Quit");
         tools.add(quitBut);
         
-        creditsBut.addActionListener(
-        		new ActionListener() {
-        			public void actionPerformed(ActionEvent e) {
-        				JOptionPane.showMessageDialog(gui,
-        						"Created By: \nMarqus Pino\nKory Borromeo-Macadangdang\nEdwin Reyes\n\nMusic By:\nMarqus Pino"
-        						+ "\n\nThis project was created for a Computer Science III H Final Project.");
-        			}
-        		}
-        		);
+        // new game button
+        newBut.addActionListener(new ActionListener() 
+        {
+        	public void actionPerformed(ActionEvent e) 
+        	{
+        		initializeGui();
+        	}
+        } );
         
-        quitBut.addActionListener(
-        		new ActionListener() {
-        			public void actionPerformed(ActionEvent e) {
-        				System.exit(0);
-        			}
-        		}
-        		);
+        //help button
+        helpBut.addActionListener(new ActionListener()
+        {
+        	public void actionPerformed(ActionEvent e) 
+        	{
+        		JOptionPane.showMessageDialog(gui, "There are two sided chips on a board. One side is black,\n "
+        				+ "and the other side is white. The black chip always starts first. You play against\n "
+        				+ "another player. The goal is to end the game with as many chips showing your color as possible.\n "
+        				+ "To do this, you must sandwich your opponents chip(s) between a piece (showing your own color)\n "
+        				+ "currently on the board, and the piece you're putting down.");
+        	}
+        	
+        } );
         
-        newBut.addActionListener(
-        		new ActionListener() {
-        			public void actionPerformed(ActionEvent e) {
-        				
-        			}
-        		}
-        		);
+        //credits button
+        creditsBut.addActionListener(new ActionListener() 
+        {
+        	public void actionPerformed(ActionEvent e) 
+        	{
+        		JOptionPane.showMessageDialog(gui,"Created By: \nMarqus Pino\nKory Borromeo-Macadangdang"
+        				+ "\nEdwin Reyes\n\nMusic By:\nMarqus Pino" 
+        				+ "\n\nThis project was created for a Computer Science III H Final Project.");
+        	}
+        } );
         
-        
-        
+        // quit button
+        quitBut.addActionListener(new ActionListener() 
+        {
+        	public void actionPerformed(ActionEvent e) 
+        	{
+        		System.exit(0);
+        	}
+        } );
         
         board = new JPanel(new GridLayout(0, 9));	
         gui.add(board);
@@ -98,12 +115,8 @@ public class Board {
                 JButton b = new JButton();
                 b.setMargin(buttonMargin);
                 // goes through boardSquares and make every other square a 
-               
-            
-                
-            
- 
-                // this goes through each button square and goes inbetween each other to make a white square or gray square
+
+                // this goes through each button square and goes in between each other to make a white square or gray square
                 if ((j % 2 == 1 && i % 2 == 1) || (j % 2 == 0 && i % 2 == 0)) 
                 {
                     b.setBackground(Color.darkGray);
@@ -114,13 +127,13 @@ public class Board {
                 
                 if ((j == 4 && i == 3) || (j == 3 && i == 4)) 
                 {
-                	ImageIcon bIcon = new ImageIcon( "U:/CS/Final Project Othello/Othello/images/Othello Chip Black.png" );
+                	ImageIcon bIcon = new ImageIcon( "G:/Othello/Othello/images/Othello Chip Black.png" );
                     b.setIcon(bIcon);
                     boardSquares[j][i] = b;
                 } 
                 else if ((j == 3 && i == 3) || (j == 4 && i == 4)) 
                 {
-                	ImageIcon bIcon = new ImageIcon( "U:/CS/Final Project Othello/Othello/images/Othello Chip White.png" );
+                	ImageIcon bIcon = new ImageIcon( "G:/Othello/Othello/images/Othello Chip White.png" );
                     b.setIcon(bIcon);
                     boardSquares[j][i] = b;
                 }
@@ -169,7 +182,9 @@ public class Board {
     {
         return gui;
     }
+    
     /*
+     * 
      * Method main will run the program 
      */
 
