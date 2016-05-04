@@ -120,17 +120,21 @@ public class Board {
                 if ((j % 2 == 1 && i % 2 == 1) || (j % 2 == 0 && i % 2 == 0)) 
                 {
                     b.setBackground(Color.darkGray);
-                } else {
+                } 
+                else 
+                {
                     b.setBackground(Color.gray);
                 }
                 boardSquares[j][i] = b;
                 
+                // makes the starting of peices of othello which is the 4 middle squares
                 if ((j == 4 && i == 3) || (j == 3 && i == 4)) 
                 {
                 	ImageIcon bIcon = new ImageIcon( "G:/Othello/Othello/images/Othello Chip Black.png" );
                     b.setIcon(bIcon);
                     boardSquares[j][i] = b;
-                } 
+                }
+                
                 else if ((j == 3 && i == 3) || (j == 4 && i == 4)) 
                 {
                 	ImageIcon bIcon = new ImageIcon( "G:/Othello/Othello/images/Othello Chip White.png" );
@@ -174,6 +178,7 @@ public class Board {
     {
         return board;
     }
+    
     /*
      * getter getGui gets the gui
      */
