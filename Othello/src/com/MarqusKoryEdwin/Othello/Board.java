@@ -127,7 +127,7 @@ public class Board {
                 }
                 boardSquares[j][i] = b;
                 
-                // makes the starting of peices of othello which is the 4 middle squares
+                // makes the starting of pieces of Othello which is the 4 middle squares
                 if ((j == 4 && i == 3) || (j == 3 && i == 4)) 
                 {
                 	ImageIcon bIcon = new ImageIcon( "G:/Othello/Othello/images/Othello Chip Black.png" );
