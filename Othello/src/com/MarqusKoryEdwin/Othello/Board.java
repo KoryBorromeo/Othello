@@ -1,5 +1,6 @@
 package com.MarqusKoryEdwin.Othello;
 
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -39,7 +40,6 @@ public class Board {
      *@return: none
      * 
      */
-
     
     public final void initializeGui() 
     {
@@ -121,7 +121,7 @@ public class Board {
                 {
                     b.setBackground(Color.darkGray);
                 } 
-                else 
+                else if ((j % 2 != 1 || i % 2 != 1) || (j % 2 != 0 || i % 2 != 0)) 
                 {
                     b.setBackground(Color.gray);
                 }
@@ -140,7 +140,7 @@ public class Board {
                 	ImageIcon bIcon = new ImageIcon( "G:/Othello/Othello/images/Othello Chip White.png" );
                     b.setIcon(bIcon);
                     boardSquares[j][i] = b;
-                }
+                }	
             }
         }
 
